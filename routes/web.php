@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home')->where('any', '.*');
+Route::get('/home', 'HomeController@index')->name('home')->where('any', '.*');
+
+$router->get('/news-list', ['uses' => 'ScraperController@getNewsList']);
+$router->get('/article/{url}', ['uses' => 'ScraperController@getArticle'])->where('url', '.*');

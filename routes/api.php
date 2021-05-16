@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+$router->get('/news-list', ['uses' => 'ScraperController@getNewsList']);
+$router->get('/article/{url}', ['uses' => 'ScraperController@getArticle'])->where('url', '.*');
